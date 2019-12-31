@@ -1,7 +1,16 @@
 version: "3.7"
 services:
-  tomcat:
-    build: ./images/tomcat
+  nginx:
+    image: nginx:1.17-alpine
+    volumes:
+      - ./services/nginx/build:/usr/share/nginx/html
+      - ./services/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+    network_mode: "host"
+    depends_on:
+      - server
+    restart: always
+  server:
+    build: images/server
     network_mode: "host"
     depends_on:
       - mysql
