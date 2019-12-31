@@ -18,3 +18,7 @@ services:
       - ./services/mysql/volume:/var/lib/mysql
     network_mode: "host"
     restart: always
+  redis:
+    image: redis:6.0-rc-alpine
+    network_mode: "host"
+    restart: always
