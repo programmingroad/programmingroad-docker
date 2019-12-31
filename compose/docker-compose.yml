@@ -10,7 +10,8 @@ services:
       - server
     restart: always
   server:
-    build: images/server
+    build: ./images/server
+    image: server
     network_mode: "host"
     depends_on:
       - mysql
