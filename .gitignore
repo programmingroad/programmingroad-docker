@@ -4,3 +4,9 @@
 *.iws
 *.iml
 *.ipr
+
+### build ###
+compose/services/nginx/build
+
+### jar ###
+compose/images/server/blog-0.0.1-SNAPSHOT.jar
