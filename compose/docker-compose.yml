@@ -1,14 +1,21 @@
 version: "3.7"
 services:
+  tomcat:
+    build: ./images/tomcat
+    network_mode: "host"
+    depends_on:
+      - mysql
+      - redis
+    restart: always
   flyway:
     image: flyway/flyway:6-alpine
     volumes:
       - ./services/flyway/sql:/flyway/sql
       - ./services/flyway/conf:/flyway/conf
+    command: -connectRetries=60 migrate
     network_mode: "host"
     depends_on:
       - mysql
-    command: -connectRetries=60 migrate
   mysql:
     image: mysql:8.0
     environment:
