@@ -12,6 +12,8 @@ services:
   server:
     build: ./images/server
     image: server
+    volumes:
+      - ./services/server:/server
     network_mode: "host"
     depends_on:
       - mysql
