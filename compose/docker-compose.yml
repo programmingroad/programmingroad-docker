@@ -5,6 +5,7 @@ services:
     volumes:
       - ./services/nginx/build:/usr/share/nginx/html
       - ./services/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - /etc/localtime:/etc/localtime
     network_mode: "host"
     depends_on:
       - server
@@ -14,6 +15,7 @@ services:
     image: server
     volumes:
       - ./services/server:/server
+      - /etc/localtime:/etc/localtime
     network_mode: "host"
     depends_on:
       - mysql
@@ -24,6 +26,7 @@ services:
     volumes:
       - ./services/flyway/sql:/flyway/sql
       - ./services/flyway/conf:/flyway/conf
+      - /etc/localtime:/etc/localtime
     command: -connectRetries=60 migrate
     network_mode: "host"
     depends_on:
@@ -35,9 +38,12 @@ services:
       MYSQL_DATABASE: programmingroad
     volumes:
       - ./services/mysql/volume:/var/lib/mysql
+      - /etc/localtime:/etc/localtime
     network_mode: "host"
     restart: always
   redis:
     image: redis:6.0-rc-alpine
+    volumes:
+      - /etc/localtime:/etc/localtime
     network_mode: "host"
     restart: always
