@@ -1,0 +1,1 @@
+ALTER TABLE article ADD COLUMN description VARCHAR(255) DEFAULT '' COMMENT '描述' AFTER title;
